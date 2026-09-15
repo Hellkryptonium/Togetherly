@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: togetherly-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: togetherly
+      POSTGRES_PASSWORD: togetherly_dev
+      POSTGRES_DB: togetherly
+    ports:
+      - "5432:5432"
+    volumes:
+     - postgres_data:/var/lib/postgresql
+
+  redis:
+    image: redis:8
+    container_name: togetherly-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
